@@ -1,0 +1,47 @@
+﻿@model IEnumerable<CrudProduto.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Produtos</h1>
+
+<p>
+    <a asp-action="Create">Novo Produto</a>
+</p>
+<table class="table" id="tabelaProdutos">
+    <thead>
+        <tr>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Categoria
+            </th>
+            <th>
+                Fornecedor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdCategoriaNavigation.Categoria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdFornecedorNavigation.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.IdProduto">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.IdProduto">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdProduto">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
